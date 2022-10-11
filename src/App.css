@@ -1,0 +1,22 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.App {
+  text-align: center;
+  background-color: red;
+}
+
+.body {
+  height: 100vh;
+  display: grid;
+
+  grid-template:
+    "header-1" 3fr
+    "section-1" 8fr
+    "section-2" 8fr
+    "footer" 3fr /
+    auto auto;
+}
