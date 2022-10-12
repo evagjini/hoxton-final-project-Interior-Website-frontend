@@ -6,17 +6,61 @@
 
 .App {
   text-align: center;
-  background-color: red;
 }
 
 .body {
   height: 100vh;
-  display: grid;
+}
 
-  grid-template:
-    "header-1" 3fr
-    "section-1" 8fr
-    "section-2" 8fr
-    "footer" 3fr /
-    auto auto;
+.header {
+  color: white;
+  display: grid;
+  grid-auto-flow: column;
+  position: sticky;
+  list-style: none;
+}
+header ul {
+  text-decoration: none;
+  display: grid;
+  grid-auto-flow: column;
+  list-style: none;
+  margin-top: 20px;
+}
+::-webkit-scrollbar {
+  width: 14px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgb(222, 228, 222);
+}
+
+.lists {
+  list-style: none;
+  text-decoration: none;
+}
+.title {
+  align-self: center;
+  justify-content: center;
+  margin-top: 50px;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 2.5rem;
+  font-weight: 300;
+}
+.principal-image {
+  position: absolute;
+  margin-top: 10px;
+  object-fit: cover;
+  transform: translateZ(-20px) scale(2.2);
+  z-index: -1;
+}
+
+.creativity {
+  position: relative;
+  align-items: center;
+  justify-items: center;
+  color: white;
 }
