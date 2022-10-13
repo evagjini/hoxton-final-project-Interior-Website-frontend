@@ -10,6 +10,7 @@ export type User =  {
   };
   
   export type Blog =  {
+    image: string | undefined;
     id :number;
     title      :string;
     content   : string;

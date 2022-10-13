@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 
+//  a duhet te shtoj edhe current userin ketu?
+
 export function SignIn({ signInUser }) {
   return (
     <form
@@ -8,7 +10,7 @@ export function SignIn({ signInUser }) {
         event.preventDefault();
 
         const user = {
-          email: event.email.target.value,
+          email: event.target.email.value,
           password: event.target.password.value,
         };
         fetch(`http://localhost:5637/sign-in`, {
@@ -26,6 +28,7 @@ export function SignIn({ signInUser }) {
               signInUser(data);
             }
           });
+        console.log(user);
       }}
     >
       <h2>Sign In</h2>

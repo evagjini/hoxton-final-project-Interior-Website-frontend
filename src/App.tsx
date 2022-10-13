@@ -4,6 +4,7 @@ import { Header } from "../Components/Header";
 import { Principal } from "../pages/Principal";
 import { SignUp } from "../pages/SignUp";
 import { SignIn } from "../pages/SignIn";
+import { Home } from "../pages/Home";
 import { User } from "../types";
 
 import "./App.css";
@@ -16,7 +17,7 @@ function App() {
   function signInUser(data: any) {
     setCurrentUser(data.user);
     localStorage.token = data.token;
-    navigate("/");
+    navigate("/home");
   }
 
   function signOutUser() {
@@ -45,11 +46,12 @@ function App() {
 
   return (
     <div className="App">
-      <Header currentUser={currentUser} />
+      <Header currentUser={currentUser} signOutUser={signOutUser} />
       <Routes>
         <Route path="/" element={<Principal />} />
         <Route path="/signUp" element={<SignUp signInUser={signInUser} />} />
         <Route path="/signIn" element={<SignIn signInUser={signInUser} />} />
+        <Route path="/home" element={<Home />} />
       </Routes>
     </div>
   );
