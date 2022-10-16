@@ -9,31 +9,31 @@ export function Header({ currentUser, signOutUser }) {
     <header>
       <h1 className="title font-bold">Seasons In Colour</h1>
       <ul>
-        {/* {currentUser ? ( */}
-        <>
-          <Link to="/home">
-            <li className="lists">Home</li>
-          </Link>
-          <Link to={"/blog"}>
-            <li className="lists">Blog</li>
-          </Link>
-          <Link to={"/favorite"}>
-            <li className="lists">Favorite</li>
-          </Link>
-          <li>
-            <button onClick={signOutUser}>LogOut</button>
-          </li>
-        </>
-        {/* ) : ( */}
-        <>
-          <Link to={"/signIn"}>
-            <li className="lists">SignIn</li>
-          </Link>
-          <Link to={"/signUp"}>
-            <li className="lists">SignUp</li>
-          </Link>
-        </>
-        {/* )} */}
+        {currentUser ? (
+          <>
+            <Link to="/home">
+              <li className="lists">Home</li>
+            </Link>
+            <Link to={"/blog"}>
+              <li className="lists">Blog</li>
+            </Link>
+            <Link to={"/favorite"}>
+              <li className="lists">Favorite</li>
+            </Link>
+            <li>
+              <button onClick={signOutUser}>LogOut</button>
+            </li>
+          </>
+        ) : (
+          <>
+            <Link to={"/signIn"}>
+              <li className="lists">SignIn</li>
+            </Link>
+            <Link to={"/signUp"}>
+              <li className="lists">SignUp</li>
+            </Link>
+          </>
+        )}
       </ul>
     </header>
   );

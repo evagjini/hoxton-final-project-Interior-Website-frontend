@@ -16,18 +16,18 @@ export function Home() {
   }, []);
 
   return (
-    <main>
-      <div className="all-blogs">
-        {blogs.map((blog) => (
-          <Link to={`/home/${blog.id}`}>
-            <div className="blog">
-              <h1>{blog.title}</h1>
-              <img src={blog.images} alt="" />
-              <p>{blog.content}</p>
-            </div>
-          </Link>
-        ))}
-      </div>
-    </main>
+    <div className="all-blogs">
+      {blogs.map((blog) => (
+        <Link to={`/home/${blog.id}`}>
+          <h1>{blog.title}</h1>
+          <p>{blog.content}</p>
+          <div>
+            {blog.images.map((image) => (
+              <li>{blog.image}</li>
+            ))}
+          </div>
+        </Link>
+      ))}
+    </div>
   );
 }

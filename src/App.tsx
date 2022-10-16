@@ -5,12 +5,13 @@ import { Principal } from "../pages/Principal";
 import { SignUp } from "../pages/SignUp";
 import { SignIn } from "../pages/SignIn";
 import { Home } from "../pages/Home";
-import { User } from "../types";
+import { Designer, User } from "../types";
 
 import "./App.css";
 
 function App() {
   const [currentUser, setCurrentUser] = useState<User | null>(null);
+  const [currentDesigner, setCurrentDesigner] = useState<Designer | null>(null);
 
   let navigate = useNavigate();
 
@@ -28,7 +29,22 @@ function App() {
 
   useEffect(() => {
     if (localStorage.token) {
-      fetch(`http://localhost:5637/validate`, {
+      if (localStorage.user === "user")
+        fetch(`http://localhost:5637/validate/user`, {
+          headers: {
+            Authorization: localStorage.token,
+          },
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            if (data.error) {
+              alert(data.error);
+            } else {
+              signInUser(data);
+            }
+          });
+    } else
+      fetch(`http://localhost:5637/validate/designer`, {
         headers: {
           Authorization: localStorage.token,
         },
@@ -40,8 +56,8 @@ function App() {
           } else {
             signInUser(data);
           }
+          console.log(data);
         });
-    }
   }, []);
 
   return (

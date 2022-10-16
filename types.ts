@@ -31,7 +31,10 @@ export type User =  {
   
 export type Designer = {
     id :number;
-    fullName  :string ;
+    name :string ;
+    lastName:string;
+    email:string;
+    password:string;
     blogs    :Blog[];
     blogId  : number
   };

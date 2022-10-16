@@ -1,11 +1,12 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 //  a duhet te shtoj edhe current userin ketu?
 
 export function SignIn({ signInUser }) {
+  const navigate = useNavigate();
   return (
     <form
-      className="sign-in"
       onSubmit={(event) => {
         event.preventDefault();
 
@@ -13,29 +14,59 @@ export function SignIn({ signInUser }) {
           email: event.target.email.value,
           password: event.target.password.value,
         };
-        fetch(`http://localhost:5637/sign-in`, {
-          method: "POST",
-          headers: {
-            "content-type": "application/json",
-          },
-          body: JSON.stringify(user),
-        })
-          .then((res) => res.json())
-          .then((data) => {
-            if (data.error) {
-              alert(data.error);
-            } else {
-              signInUser(data);
-            }
-          });
         console.log(user);
+
+        if (event.target.answer.value === "user") {
+          fetch(`http://localhost:5000/sign-in/user`, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(user),
+          })
+            .then((resp) => resp.json())
+            .then((data) => {
+              if (data.error) {
+                alert(data.error);
+              } else {
+                signInUser(data);
+              }
+            });
+          localStorage.user = "user";
+        } else {
+          fetch(`http://localhost:5000/sign-in/designer`, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(designer),
+          })
+            .then((resp) => resp.json())
+            .then((data) => {
+              if (data.error) {
+                alert(data.error);
+              } else {
+                signInUser(data);
+              }
+            });
+          localStorage.user = "designer";
+        }
       }}
     >
-      <h2>Sign In</h2>
+      <>
+        <div>
+          <h2>Sing In As : </h2>
+          <h3>User</h3>
+          <input name="answer" value="user" required />
+          <h3>Designer</h3>
+        </div>
+        <input name="answer" value="designer" required />
 
-      <input type="email" name="email" required />
-      <input type="password" name="passwword" required />
-      <button>Sign In</button>
+        <h2>Sign In</h2>
+        <input type="email" name="email" required />
+        <input type="password" name="passwword" required />
+        <button>Sign In</button>
+      </>
     </form>
   );
 }
