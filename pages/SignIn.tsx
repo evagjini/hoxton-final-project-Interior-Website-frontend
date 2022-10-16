@@ -34,6 +34,10 @@ export function SignIn({ signInUser }) {
             });
           localStorage.user = "user";
         } else {
+          const designer = {
+            email: event.target.email.value,
+            password: event.target.password.value,
+          };
           fetch(`http://localhost:5000/sign-in/designer`, {
             method: "POST",
             headers: {
