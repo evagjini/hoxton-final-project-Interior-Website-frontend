@@ -3,7 +3,10 @@ import { useNavigate } from "react-router-dom";
 
 //  a duhet te shtoj edhe current userin ketu?
 
-export function SignIn({ signInUser }) {
+// type Props = {
+//     signInUser:
+// }
+export function SignIn({ signInUser, signInDesigner }) {
   const navigate = useNavigate();
   return (
     <form
@@ -17,7 +20,7 @@ export function SignIn({ signInUser }) {
         console.log(user);
 
         if (event.target.answer.value === "user") {
-          fetch(`http://localhost:5000/sign-in/user`, {
+          fetch(`http://localhost:5637/sign-in/user`, {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
@@ -38,7 +41,8 @@ export function SignIn({ signInUser }) {
             email: event.target.email.value,
             password: event.target.password.value,
           };
-          fetch(`http://localhost:5000/sign-in/designer`, {
+
+          fetch(`http://localhost:5637/sign-in/designer`, {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
@@ -50,26 +54,26 @@ export function SignIn({ signInUser }) {
               if (data.error) {
                 alert(data.error);
               } else {
-                signInUser(data);
+                signInDesigner(data);
               }
             });
-          localStorage.user = "designer";
+          localStorage.designer = "designer";
         }
       }}
     >
       <>
         <div>
           <h2>Sing In As : </h2>
-          <h3>User</h3>
-          <input name="answer" value="user" required />
-          <h3>Designer</h3>
+          <select name="answer">
+            <option value="user">User</option>
+            <option value="designer">Designer</option>
+          </select>
         </div>
-        <input name="answer" value="designer" required />
 
         <h2>Sign In</h2>
         <input type="email" name="email" required />
-        <input type="password" name="passwword" required />
-        <button>Sign In</button>
+        <input type="password" name="password" required />
+        <button onChange={() => {}}>Sign In</button>
       </>
     </form>
   );

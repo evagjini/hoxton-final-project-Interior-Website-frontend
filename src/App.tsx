@@ -20,6 +20,11 @@ function App() {
     localStorage.token = data.token;
     navigate("/home");
   }
+  function signInDesigner(data: any) {
+    setCurrentDesigner(data.designer);
+    localStorage.token = data.token;
+    // navigate("/blog");
+  }
 
   function signOutUser() {
     setCurrentUser(null);
@@ -54,7 +59,7 @@ function App() {
           if (data.error) {
             alert(data.error);
           } else {
-            signInUser(data);
+            signInDesigner(data);
           }
           console.log(data);
         });
@@ -66,8 +71,13 @@ function App() {
       <Routes>
         <Route path="/" element={<Principal />} />
         <Route path="/signUp" element={<SignUp signInUser={signInUser} />} />
-        <Route path="/signIn" element={<SignIn signInUser={signInUser} />} />
-        <Route path="/home" element={<Home />} />
+        <Route
+          path="/signIn"
+          element={
+            <SignIn signInUser={signInUser} signInDesigner={signInDesigner} />
+          }
+        />
+        <Route path="/blog" element={<Home />} />
       </Routes>
     </div>
   );

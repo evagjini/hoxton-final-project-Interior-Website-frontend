@@ -11,11 +11,11 @@ export function Header({ currentUser, signOutUser }) {
       <ul>
         {currentUser ? (
           <>
-            <Link to="/home">
-              <li className="lists">Home</li>
-            </Link>
-            <Link to={"/blog"}>
+            <Link to="/blog">
               <li className="lists">Blog</li>
+            </Link>
+            <Link to={"/categories"}>
+              <li className="lists">Categories</li>
             </Link>
             <Link to={"/favorite"}>
               <li className="lists">Favorite</li>
