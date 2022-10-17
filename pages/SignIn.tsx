@@ -3,10 +3,11 @@ import { useNavigate } from "react-router-dom";
 
 //  a duhet te shtoj edhe current userin ketu?
 
-// type Props = {
-//     signInUser:
-// }
-export function SignIn({ signInUser, signInDesigner }) {
+type Props = {
+  signInUser: (data: any) => void;
+  signInDesigner: (data: any) => void;
+};
+export function SignIn({ signInUser, signInDesigner }: Props) {
   const navigate = useNavigate();
   return (
     <form
@@ -14,11 +15,13 @@ export function SignIn({ signInUser, signInDesigner }) {
         event.preventDefault();
 
         const user = {
+          //@ts-ignore
           email: event.target.email.value,
+          //@ts-ignore
           password: event.target.password.value,
         };
         console.log(user);
-
+        //@ts-ignore
         if (event.target.answer.value === "user") {
           fetch(`http://localhost:5637/sign-in/user`, {
             method: "POST",
@@ -33,12 +36,15 @@ export function SignIn({ signInUser, signInDesigner }) {
                 alert(data.error);
               } else {
                 signInUser(data);
+                navigate("/blog");
               }
             });
           localStorage.user = "user";
         } else {
           const designer = {
+            //@ts-ignore
             email: event.target.email.value,
+            //@ts-ignore
             password: event.target.password.value,
           };
 
@@ -55,6 +61,7 @@ export function SignIn({ signInUser, signInDesigner }) {
                 alert(data.error);
               } else {
                 signInDesigner(data);
+                navigate("/designer");
               }
             });
           localStorage.designer = "designer";

@@ -1,10 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { User } from "../types";
-// type Props = {
-//   currentUser: User | null;
-// };
-export function Header({ currentUser, signOutUser }) {
+type Props = {
+  currentUser: User | null;
+  signOutUser: () => void;
+};
+
+export function Header({ currentUser, signOutUser }: Props) {
   return (
     <header>
       <h1 className="title font-bold">Seasons In Colour</h1>

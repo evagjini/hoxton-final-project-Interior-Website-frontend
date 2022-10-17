@@ -1,6 +1,9 @@
 import React, { useState } from "react";
+type Props = {
+  signInUser: (data: any) => void;
+};
 
-export function SignUp({ signInUser }) {
+export function SignUp({ signInUser }: Props) {
   return (
     <form
       className="sign-in"
@@ -8,9 +11,13 @@ export function SignUp({ signInUser }) {
         event.preventDefault();
 
         const user = {
+          //@ts-ignore
           name: event.target.name.value,
+          //@ts-ignore
           lastName: event.target.lastName.value,
+          //@ts-ignore
           email: event.target.email.value,
+          //@ts-ignore
           password: event.target.password.value,
         };
         fetch(`http://localhost:5637/sign-up`, {

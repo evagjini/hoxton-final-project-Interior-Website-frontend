@@ -6,6 +6,7 @@ import { SignUp } from "../pages/SignUp";
 import { SignIn } from "../pages/SignIn";
 import { BlogDetail } from "../pages/BlogDetail";
 import { Home } from "../pages/Home";
+import { Bloger } from "../pages/Bloger";
 import { Designer, User } from "../types";
 
 import "./App.css";
@@ -80,6 +81,7 @@ function App() {
         />
         <Route path="/blog/:id" element={<BlogDetail />} />
         <Route path="/blog" element={<Home />} />
+        <Route path="/designer" element={<Bloger />} />
       </Routes>
     </div>
   );

@@ -8,7 +8,8 @@ export function BlogDetail() {
   const params = useParams();
   const navigate = useNavigate();
 
-  //   window.singleBlog = singleBlog;
+  //@ts-ignore
+  window.singleBlog = singleBlog;
 
   useEffect(() => {
     fetch(`http://localhost:5637/blog/${params.id}`)
