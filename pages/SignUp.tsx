@@ -15,7 +15,7 @@ export function SignUp({ signInUser }: Props) {
           name: event.target.name.value,
           //@ts-ignore
           lastName: event.target.lastName.value,
-          //@ts-ignore
+          // @ts-ignore
           email: event.target.email.value,
           //@ts-ignore
           password: event.target.password.value,
@@ -43,7 +43,7 @@ export function SignUp({ signInUser }: Props) {
       <input type="lastName" placeholder="Enter your lastName ... " />
       <input type="email" placeholder="Enter your email..." required />
       <input type="password" placeholder="Enter your password" required />
-      <button>Sign Up</button>
+      <button type="submit">Sign Up</button>
     </form>
   );
 }

@@ -36,7 +36,7 @@ export function BlogDetail() {
               <img src={image.image} alt="" />
               <p>{image.description}</p>
             </>
-            {singleBlog.designer}
+            {} [singleBlog.designer]
           </>
         ))}
       </p>
