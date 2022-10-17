@@ -59,6 +59,7 @@ export type Likes = {
 export type Image = {
   id: number;
   image: string;
+  description: string;
   blog: Blog;
   blogId: number;
 };

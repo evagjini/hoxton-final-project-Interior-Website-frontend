@@ -4,6 +4,7 @@ import { Header } from "../Components/Header";
 import { Principal } from "../pages/Principal";
 import { SignUp } from "../pages/SignUp";
 import { SignIn } from "../pages/SignIn";
+import { BlogDetail } from "../pages/BlogDetail";
 import { Home } from "../pages/Home";
 import { Designer, User } from "../types";
 
@@ -77,6 +78,7 @@ function App() {
             <SignIn signInUser={signInUser} signInDesigner={signInDesigner} />
           }
         />
+        <Route path="/blog/:id" element={<BlogDetail />} />
         <Route path="/blog" element={<Home />} />
       </Routes>
     </div>
