@@ -9,6 +9,7 @@ export type User = {
 };
 
 export type Blog = {
+  map: any;
   image: string | undefined;
   id: number;
   title: string;
@@ -62,4 +63,11 @@ export type Image = {
   description: string;
   blog: Blog;
   blogId: number;
+};
+export type Favorite = {
+  id: number;
+  userId: number;
+  blogid: number;
+  blog: Blog;
+  user: User;
 };
