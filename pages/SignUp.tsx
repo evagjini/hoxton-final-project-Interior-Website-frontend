@@ -20,10 +20,10 @@ export function SignUp({ signInUser }: Props) {
           //@ts-ignore
           password: event.target.password.value,
         };
-        fetch(`http://localhost:5637/sign-up`, {
+        fetch(`http://localhost:5637/sign-up/user`, {
           method: "POST",
           headers: {
-            "content-type": "application/json",
+            "Content-Type": "application/json",
           },
           body: JSON.stringify(user),
         })
@@ -39,10 +39,24 @@ export function SignUp({ signInUser }: Props) {
       }}
     >
       <h2>Sign Up</h2>
-      <input type="name" placeholder="Enter your name ..." />
-      <input type="lastName" placeholder="Enter your lastName ... " />
-      <input type="email" placeholder="Enter your email..." required />
-      <input type="password" placeholder="Enter your password" required />
+      <input type="text" name="name" placeholder="Enter your name ..." />
+      <input
+        type="text"
+        name="lastName"
+        placeholder="Enter your lastName ... "
+      />
+      <input
+        type="email"
+        name="email"
+        placeholder="Enter your email..."
+        required
+      />
+      <input
+        type="password"
+        name="password"
+        placeholder="Enter your password"
+        required
+      />
       <button type="submit">Sign Up</button>
     </form>
   );
