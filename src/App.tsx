@@ -6,7 +6,8 @@ import { SignUp } from "../pages/SignUp";
 import { SignIn } from "../pages/SignIn";
 import { BlogDetail } from "../pages/BlogDetail";
 import { Home } from "../pages/Home";
-import { Categories } from "../pages/Categories";
+// import { Categories } from "../pages/Categories";
+import { Categories } from "../pages/CategoriesDetails";
 import { Bloger } from "../pages/Bloger";
 import { FavoriteDesign } from "../pages/FavoriteDesign";
 import { Designer, User } from "../types";
@@ -86,7 +87,8 @@ function App() {
           element={<BlogDetail currentUser={currentUser} />}
         />
         <Route path="/blog" element={<Home />} />
-        <Route path="/categories" element={<Categories />} />
+        {/* <Route path="/categories" element={<Categories />} /> */}
+        <Route path="/categories/" element={<Categories />} />
         <Route
           path="/favorite"
           element={<FavoriteDesign currentUser={currentUser} />}

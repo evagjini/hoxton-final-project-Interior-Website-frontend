@@ -100,6 +100,7 @@ export function BlogDetail({ currentUser }: Props) {
                     setSingleBlog(data);
                   }
                 });
+              // @ts-ignore
               event.target.reset();
             }}
           >
