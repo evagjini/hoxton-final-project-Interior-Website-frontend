@@ -1,9 +1,11 @@
 import React from "react";
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { Blog, Favorite, User } from "../types";
 
 type Props = {
   currentUser: User | null;
+  blog: Blog;
 };
 export function FavoriteDesign({ currentUser }: Props) {
   const [favorites, setFavorites] = useState<Favorite[]>([]);
@@ -23,18 +25,20 @@ export function FavoriteDesign({ currentUser }: Props) {
   }, []);
   return (
     <div>
-      <h1> All Favorites </h1>
-      <ul className="favorites-list">
-        {favorites.reverse().map((favorite) => (
-          <li key={favorite.id} className="favorites">
-            {/* {favorite.blog.images.map((image) => (
-              <img src={favorite.blog.image} alt="" />
-            ))} */}
-            {/* <img src={favorite.blog.image} alt="" />
-            <p>{favorite.user.name}</p> */}
-          </li>
-        ))}
-      </ul>
+      <h1> All Favorites of {currentUser?.name}</h1>
+      {
+        <ul className="favorites-list">
+          {favorites.map((favorite) => (
+            <li className="favorites">
+              <h4>{favorite.blog.title}</h4>
+              <Link to={"/blogs/"}></Link>
+              {/* {favorite.blog.images.map((image) => (
+                <img src={favorite.blog.image} alt="" />
+              ))} */}
+            </li>
+          ))}
+        </ul>
+      }
     </div>
   );
 }

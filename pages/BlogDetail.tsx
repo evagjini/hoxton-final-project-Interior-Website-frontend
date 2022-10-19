@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { Blog, Designer, User } from "../types";
+import { Blog, Comment, Designer, User } from "../types";
 
 type Props = {
   currentUser: User | null;
@@ -9,6 +9,8 @@ type Props = {
 export function BlogDetail({ currentUser }: Props) {
   const [singleBlog, setSingleBlog] = useState<Blog | null>(null);
   const [designers, setDesigners] = useState<Designer[]>([]);
+  const [comment, setComment] = useState([]);
+
   const params = useParams();
   const navigate = useNavigate();
 
@@ -72,50 +74,48 @@ export function BlogDetail({ currentUser }: Props) {
           Favorite
         </button>
 
-        <div className="comment">
-          <form
-            className="comment-form"
-            onSubmit={(event) => {
-              event.preventDefault();
+        <form
+          onSubmit={(event) => {
+            event.preventDefault();
 
-              let newComment = {
-                userId: currentUser?.id,
-                blogId: singleBlog.id,
-                // @ts-ignore
-                comment: event.target.comment.value,
-              };
-              console.log(newComment);
-              fetch(`http://localhost:5637/comments`, {
-                method: "POST",
-                headers: {
-                  "Content-Type": "application/json",
-                },
-                body: JSON.stringify(newComment),
-              })
-                .then((res) => res.json())
-                .then((data) => {
-                  if (data.error) {
-                    console.log(data.error);
-                  } else {
-                    setSingleBlog(data);
-                  }
-                });
+            let newComment = {
+              userId: currentUser?.id,
+              blogId: singleBlog.id,
               // @ts-ignore
-              event.target.reset();
-            }}
-          >
-            <input
-              className="comment-input"
-              type="text"
-              name="comment"
-              placeholder="Enter your comment ..."
-            />
-            <button onClick={() => {}}> Submit</button>
-          </form>
-        </div>
+              comment: event.target.comment.value,
+            };
+            fetch(`http://localhost:5637/comments`, {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify(newComment),
+            })
+              .then((res) => res.json())
+              .then((data) => {
+                if (data.error) {
+                  alert(data.error);
+                } else {
+                  setSingleBlog(data);
+                }
+              });
+            // @ts-ignore
+            event.target.reset();
+          }}
+        >
+          <input
+            type="text"
+            name="comment"
+            placeholder="Enter your comment ..."
+          />
+
+          <button onClick={() => {}}>Submit</button>
+        </form>
+
+        <div className="comment"></div>
         <ul className="comment-list">
           All Comments :
-          {singleBlog.comments.reverse().map((comment) => (
+          {singleBlog.comments.map((comment) => (
             <li className="single-comment">
               <h3>{comment.user.name}</h3>
               <p>{comment.comment}</p>

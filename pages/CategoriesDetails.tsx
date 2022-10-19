@@ -31,8 +31,7 @@ export function Categories() {
               <>
                 <Link to={`/blogs/${blog.id}`}>
                   <div>
-                    <h1>{blog.title}</h1>
-                    <img src={blog.image} alt="" />
+                    <h1>{blog.categoryId}</h1>
                   </div>
                 </Link>
               </>
