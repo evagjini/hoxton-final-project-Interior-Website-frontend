@@ -5,7 +5,6 @@ import { Blog, Favorite, User } from "../types";
 
 type Props = {
   currentUser: User | null;
-  blog: Blog;
 };
 export function FavoriteDesign({ currentUser }: Props) {
   const [favorites, setFavorites] = useState<Favorite[]>([]);
@@ -25,20 +24,27 @@ export function FavoriteDesign({ currentUser }: Props) {
   }, []);
   return (
     <div>
-      <h1> All Favorites of {currentUser?.name}</h1>
-      {
-        <ul className="favorites-list">
-          {favorites.map((favorite) => (
-            <li className="favorites">
-              <h4>{favorite.blog.title}</h4>
-              <Link to={"/blogs/"}></Link>
-              {/* {favorite.blog.images.map((image) => (
+      <h1 className="font-bold font-sans text-2xl  my-4">
+        {" "}
+        All Favorites of {currentUser?.name}
+      </h1>
+      <div className="flex justify-center border-2">
+        <div>
+          {
+            <ul className="favorites-list">
+              {favorites.map((favorite) => (
+                <li className="favorites">
+                  <h4>{favorite.blog.title}</h4>
+                  <Link to={"/blogs/blog"}></Link>
+                  {/* {favorite.blog.images.map((image) => (
                 <img src={favorite.blog.image} alt="" />
               ))} */}
-            </li>
-          ))}
-        </ul>
-      }
+                </li>
+              ))}
+            </ul>
+          }
+        </div>
+      </div>
     </div>
   );
 }

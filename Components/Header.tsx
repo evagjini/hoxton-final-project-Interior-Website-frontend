@@ -9,30 +9,47 @@ type Props = {
 export function Header({ currentUser, signOutUser }: Props) {
   return (
     <header>
-      <h1 className="title font-bold">Seasons In Colour</h1>
+      <h1 className="title text-center text-3xl shadow-orange-800 text-blue-600 font-sans font-bold">
+        Seasons In Colour
+      </h1>
       <ul>
         {currentUser ? (
           <>
             <Link to="/blog">
-              <li className="lists">Blog</li>
+              <li className="text-1xl text-gray-800 font-sans bg-gradient-to-br ">
+                Blog
+              </li>
             </Link>
             <Link to={"/categories"}>
-              <li className="lists">Categories</li>
+              <li className="text-1xl text-gray-800 font-sans bg-gradient-to-br">
+                Categories
+              </li>
             </Link>
             <Link to={"/favorite"}>
-              <li className="lists">Favorite</li>
+              <li className="text-1xl text-gray-800 font-sans bg-gradient-to-br">
+                Favorite
+              </li>
             </Link>
             <li>
-              <button onClick={signOutUser}>LogOut</button>
+              <button
+                className="text-1xl text-gray-800 font-sans bg-gradient-to-br"
+                onClick={signOutUser}
+              >
+                LogOut
+              </button>
             </li>
           </>
         ) : (
           <>
             <Link to={"/signIn"}>
-              <li className="lists">SignIn</li>
+              <li className="text-3xl text-gray-500 font-sans bg-gradient-to-br ">
+                SignIn
+              </li>
             </Link>
             <Link to={"/signUp"}>
-              <li className="lists">SignUp</li>
+              <li className="text-3xl text-gray-500 font-sans bg-gradient-to-br">
+                SignUp
+              </li>
             </Link>
           </>
         )}

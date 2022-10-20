@@ -67,5 +67,35 @@ header ul {
 
 .blogs {
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
+}
+.title {
+  font-size: 26px;
+  margin-bottom: 2rem;
+}
+.img {
+  width: 500px;
+  height: 500px;
+  display: grid;
+  justify-items: center;
+  margin-left: 25rem;
+  object-fit: cover;
+  border-radius: 20px;
+}
+/* .App {
+  background-image: url("https://images.pexels.com/photos/5977736/pexels-photo-5977736.jpeg?auto=compress&cs=tinysrgb&w=600");
+} */
+.details {
+  display: grid;
+  grid-template-columns: auto;
+}
+.content {
+  display: grid;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+.favorites {
+  display: grid;
+  grid-template-columns: auto;
+  /* background-image: url("https://images.pexels.com/photos/5797991/pexels-photo-5797991.jpeg?auto=compress&cs=tinysrgb&w=600"); */
 }

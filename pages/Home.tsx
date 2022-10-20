@@ -24,20 +24,25 @@ export function Home() {
   return (
     <>
       <SearchBar setSearch={setSearch} />
-      <div className="blogs">
+      <div
+        className="blogs background-image: linear-gradient(to top left, var(--tw-gradient-stops));
+"
+      >
         <div className="relative mx-auto max-w-9xl">
-          <div className="mx-auto mt-10 grid max-w-lg gap-5 lg:max-w-none lg:grid-col-2">
+          <div className="mx-auto mt-10 grid max-w-lg gap-5 lg:max-w-none lg:grid-cols-3">
             {filteredBlogs.map((blog) => (
-              <div className="flex flex-col overflow-hidden rounded-lg shadow-lg">
+              <div className="flex flex-col overflow-hidden rounded-lg border-2">
                 <Link to={`/blog/${blog.id}`}>
-                  <span>{blog.created_at}</span>
+                  <p className="py-2">
+                    {new Date(blog.created_at).toUTCString()}
+                  </p>
 
                   <img
                     className="h-60 w-full object-fit"
                     src={blog.images[0].image}
                     alt=""
                   />
-                  <h1>{blog.title}</h1>
+                  <h1 className="py-3">{blog.title}</h1>
                 </Link>
               </div>
             ))}

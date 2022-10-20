@@ -4,7 +4,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { Blog, Comment, Designer, User } from "../types";
 
 type Props = {
-  currentUser: User | null;
+  currentUser: User;
 };
 export function BlogDetail({ currentUser }: Props) {
   const [singleBlog, setSingleBlog] = useState<Blog | null>(null);
@@ -33,19 +33,26 @@ export function BlogDetail({ currentUser }: Props) {
 
   return (
     <>
-      <div>
-        <h3>{singleBlog.title}</h3>
+      <div className="details ">
+        <h3 className="font-style: italic mb-10 mt-10 text-2xl font-mono text-blue-500">
+          {singleBlog.title}
+        </h3>
 
-        {designers.map((designer) => (
-          <span>{designer.name}</span>
-        ))}
+        <span>
+          by {singleBlog.designer.name} {singleBlog.designer.lastName}
+        </span>
 
-        <p>
+        <p className=" bg-blend-lighten">
           {singleBlog.images.map((image) => (
             <>
               <>
-                <img src={image.image} alt="" />
-                <p>{image.description}</p>
+                <div className="flex flex-row w-full space-x-24 mb-32">
+                  <p className="content text-slate-700 text-start decoration-from-font font-serif w-full">
+                    {image.description}
+                  </p>
+
+                  <img className="w-80 rounded-xl" src={image.image} alt="" />
+                </div>
               </>
             </>
           ))}
@@ -53,6 +60,27 @@ export function BlogDetail({ currentUser }: Props) {
       </div>
       <div>
         <button
+          className="like-button"
+          onClick={() => {
+            fetch(`http://localhost:5637/likeBlogs`, {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({
+                //@ts-ignore
+                userId: currentUser.id,
+                blogId: singleBlog.id,
+              }),
+            })
+              .then((resp) => resp.json())
+              .then((blog) => setSingleBlog(blog));
+          }}
+        >
+          💛 {singleBlog.likes.length} likes
+        </button>
+        <button
+          className="bg-blue-500 hover:bg-blue-700 ml-2 text-white font-bold py-2 px-4 rounded"
           onClick={() => {
             fetch("http://localhost:5637/favorites", {
               method: "POST",
@@ -101,24 +129,34 @@ export function BlogDetail({ currentUser }: Props) {
           }}
         >
           <input
+            className="border py-2 px-3 text-grey-darkest mt-3 whitespace-normal bg-blue-50 border-none mr-2"
             type="text"
             name="comment"
             placeholder="Enter your comment ..."
           />
 
-          <button onClick={() => {}}>Submit</button>
+          <button
+            className="bg-purple-300 hover:bg-purple-300 text-white font-bold py-2 px-4 rounded border-none"
+            onClick={() => {}}
+          >
+            Submit
+          </button>
         </form>
 
-        <div className="comment"></div>
-        <ul className="comment-list">
-          All Comments :
-          {singleBlog.comments.map((comment) => (
-            <li className="single-comment">
-              <h3>{comment.user.name}</h3>
-              <p>{comment.comment}</p>
-            </li>
-          ))}
-        </ul>
+        <div className=" space-x-4 text-sm text-gray-500">
+          <div className="flex-none py-10">
+            {/* <ul className=" text-center text-sm  font-medium font-serif border-l-slate-500"> */}
+            All Comments :
+            {singleBlog.comments.map((comment) => (
+              <div className="border-l-rose-200">
+                <h3 className="font-medium text-gray-900">
+                  {comment.user.name}
+                </h3>
+                <div className="mt-4 text-gray-700 ">{comment.comment}</div>
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
     </>
   );

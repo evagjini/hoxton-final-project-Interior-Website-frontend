@@ -7,80 +7,34 @@ import { Blog, Category, User } from "../types";
 //   currentUser: User;
 //   signOutUser: () => void;
 // };
-export function Categories() {
-  // const [blogs, setBlogs] = useState<Blog[]>([]);
-  const [categories, setCategories] = useState<Category[]>([]);
-  const [blogCategory, setBlogCategory] = useState<Blog[]>([]);
+export function CategoriesDetails() {
+  const [category, setCategory] = useState<Category | null>(null);
+
   const params = useParams();
 
   useEffect(() => {
-    fetch("http://localhost:5637/categories")
-      .then((res) => res.json())
-      .then((categoriesFromServer) => setCategories(categoriesFromServer));
+    fetch(`http://localhost:5637/categories/${params.id}`)
+      .then((resp) => resp.json())
+      .then((categoryFromServer) => setCategory(categoryFromServer));
   }, []);
-
-  // useEffect(() => {
-  //   fetch(`http://localhost:5637/blogs?categoryId=${params.id}`)
-  //     .then((resp) => resp.json())
-  //     .then((blogsFromServer) => setBlogs(blogsFromServer));
-  // }, []);
+  if (category === null) return <h1>Loading... </h1>;
 
   return (
-    <div className="categories">
-      {/* <Header currentUser={currentUser} signOutUser={signOutUser} />{" "} */}
-      {categories.map((category) => (
-        <>
-          <div
-            className="single-category"
-            key={category.id}
-            onClick={() => {
-              fetch(`http://localhost:5637/blogsForCategory/${category.id}`)
-                .then((res) => res.json())
-                .then((data) => setBlogCategory(data));
-            }}
-          >
-            <button>{category.name}</button>
-          </div>
-          <div className="categoriess">
-            {blogCategory?.map((blog) => (
-              <>
-                <BlogCategory blog={blog} />
-              </>
-            ))}
-          </div>
-        </>
-      ))}
+    <div>
+      <h1 className="my-12 text-2xl font-bold">{category.name}</h1>
+
+      <div className="grid grid-cols-3 gap-x-4">
+        {category.blogs.map((blog: Blog) => (
+          <>
+            <div className="flex flex-col justify-center items-center border-2 p-6 rounded-xl">
+              <Link to={`/blogs/${blog.id}`}></Link>
+
+              <h3>{blog.title}</h3>
+              <img className="w-32 rounded" src={blog.images[0].image} alt="" />
+            </div>
+          </>
+        ))}
+      </div>
     </div>
-
-    // <div>
-    //   <ul>
-    //     {categories.map((category) => (
-    //       <li key={category.id}>
-    //         <Link to={`/categories/${category.id}`}>{category.name}</Link>
-    //       </li>
-    //     ))}
-    //   </ul>
-
-    //   <div className="flowers-wraper">
-    //     <ul className="flowers-list">
-    //       {blogs.map((blog) => (
-    //         <li>
-    //           <Link to={`/blogs/${blog.id}`}>
-    //             <article className="blog-item">
-    //               <img src={blog.image} alt={blog.title} />
-    //               <h3 className="blog-title">{blog.title}</h3>
-    //             </article>
-    //           </Link>
-    //         </li>
-    //       ))}
-    //     </ul>
-    //   </div>
-    // </div>
   );
 }
-
-//
-//   return (
-//
-//   );
-// }
