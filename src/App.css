@@ -64,3 +64,8 @@ header ul {
   justify-items: center;
   color: white;
 }
+
+.blogs {
+  display: flex;
+  flex-wrap: wrap;
+}

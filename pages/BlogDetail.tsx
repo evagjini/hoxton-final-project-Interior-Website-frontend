@@ -9,7 +9,7 @@ type Props = {
 export function BlogDetail({ currentUser }: Props) {
   const [singleBlog, setSingleBlog] = useState<Blog | null>(null);
   const [designers, setDesigners] = useState<Designer[]>([]);
-  const [comment, setComment] = useState([]);
+  // const [comments, setComments] = useState([]);
 
   const params = useParams();
   const navigate = useNavigate();
@@ -24,7 +24,7 @@ export function BlogDetail({ currentUser }: Props) {
   }, []);
 
   useEffect(() => {
-    fetch("http://localhost:5637/designers")
+    fetch(`http://localhost:5637/designers}`)
       .then((res) => res.json())
       .then((designersFromServer) => setDesigners(designersFromServer));
   }, []);
@@ -35,8 +35,9 @@ export function BlogDetail({ currentUser }: Props) {
     <>
       <div>
         <h3>{singleBlog.title}</h3>
+
         {designers.map((designer) => (
-          <span>{designer.blogId}</span>
+          <span>{designer.name}</span>
         ))}
 
         <p>
@@ -92,12 +93,8 @@ export function BlogDetail({ currentUser }: Props) {
               body: JSON.stringify(newComment),
             })
               .then((res) => res.json())
-              .then((data) => {
-                if (data.error) {
-                  alert(data.error);
-                } else {
-                  setSingleBlog(data);
-                }
+              .then((blog) => {
+                setSingleBlog(blog);
               });
             // @ts-ignore
             event.target.reset();

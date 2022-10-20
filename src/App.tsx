@@ -87,14 +87,16 @@ function App() {
           element={<BlogDetail currentUser={currentUser} />}
         />
         <Route path="/blog" element={<Home />} />
-        {/* <Route path="/categories" element={<Categories />} /> */}
+        {/* <Route path="/categories/:id" element={<Categories />} /> */}
         <Route path="/categories/" element={<Categories />} />
+        <Route
+          path="/designer"
+          element={<Bloger currentDesigner={currentDesigner} />}
+        />
         <Route
           path="/favorite"
           element={<FavoriteDesign currentUser={currentUser} />}
         />
-
-        <Route path="/designer" element={<Bloger />} />
       </Routes>
     </div>
   );

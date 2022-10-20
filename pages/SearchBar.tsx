@@ -6,12 +6,16 @@ type Props = {
 
 export function SearchBar({ setSearch }: Props) {
   return (
-    <input
-      className="search"
-      placeholder="Search for a blog..."
-      onChange={(event) => {
-        setSearch(event.target.value);
-      }}
-    />
+    <div className="flex items-center justify-center px-4 border-r ">
+      <div className="flex border-2 rounded-md ">
+        <input
+          className=" px-4 py-2 w-80"
+          placeholder="Search for a blog..."
+          onChange={(event) => {
+            setSearch(event.target.value);
+          }}
+        />
+      </div>
+    </div>
   );
 }
