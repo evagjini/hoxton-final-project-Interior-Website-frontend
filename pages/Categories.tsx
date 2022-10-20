@@ -9,18 +9,19 @@ export function Categories() {
     fetch("http://localhost:5637/categories")
       .then((res) => res.json())
       .then((categoriesFromServer) => setCategories(categoriesFromServer));
-  });
-  return (
-    <div className="flex justify-center border-r-2 ">
-      <ul>
-        {categories.map((category) => (
-          <>
-            <li key={category.id}>
-              <Link to={`/categories/${category.id}`}> {category.name}</Link>
-            </li>
-          </>
-        ))}
-      </ul>
-    </div>
-  );
+  }, []);
+  return <div></div>;
 }
+// <div className="flex justify-center border-r-2 ">
+//   <ul>
+//     {/* {categories.map((category) => ( */}
+//     {/* <>
+//         <li key={category.id}>
+//             <Link to={`/categories/${category.id}`}> {category.name}</Link>
+//           </li>
+//         </>
+//       ))} */}
+//     </ul>
+//   </div>
+// );
+// }

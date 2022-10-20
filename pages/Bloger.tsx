@@ -1,18 +1,36 @@
-import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+// import React, { useEffect, useState } from "react";
+// import { useParams } from "react-router-dom";
 import { Designer } from "../types";
-// type Props = {
-//   setDesign
-// };
 
-export function Bloger() {
-  const [title, setTitle] = useState("");
-  const [category, setCategory] = useState("");
-  const [images, setImages] = useState("");
-  const [created_at, setCreated_at] = useState("");
-  return <div></div>;
+type Props = {
+  currentDesigner: Designer;
+};
+
+export function Bloger({ currentDesigner }: Props) {
+  return (
+    <div>
+      <h1>Hello I am {currentDesigner.name}</h1>
+      <img
+        className="flex flex-col"
+        src="https://images.pexels.com/photos/1587009/pexels-photo-1587009.jpeg?auto=compress&cs=tinysrgb&w=600"
+        width={300}
+        alt=""
+      />
+      <p>
+        Join me In the jouney of designing your Interior Spaces ! Designing for
+        me it's a passion that fullfills me ! Welcome and enjoy my blogs!
+      </p>
+    </div>
+  );
 }
-// |  function createNewDesign() {
+// export function Bloger() {
+//   const [title, setTitle] = useState("");
+//   const [category, setCategory] = useState("");
+//   const [images, setImages] = useState("");
+//   const [created_at, setCreated_at] = useState("");
+//   return <div></div>;
+// }
+//   function createNewDesign() {
 //     let newDesign = {
 //       title: title,
 //       category: category,

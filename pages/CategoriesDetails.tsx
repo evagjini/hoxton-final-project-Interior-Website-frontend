@@ -30,7 +30,12 @@ export function CategoriesDetails() {
               <Link to={`/blogs/${blog.id}`}></Link>
 
               <h3>{blog.title}</h3>
-              <img className="w-32 rounded" src={blog.images[0].image} alt="" />
+              <img
+                className="w-32 rounded"
+                src={blog.images[0].image}
+                alt=""
+                key={category.id}
+              />
             </div>
           </>
         ))}
